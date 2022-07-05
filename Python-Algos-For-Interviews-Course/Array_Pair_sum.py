@@ -35,7 +35,7 @@ https://youtu.be/p65AHm9MX80?t=4031
              
 #Solution from youube vid.
 
-from tkinter import N
+ 
 
 
 def pair_sum(array, k):
@@ -51,9 +51,13 @@ def pair_sum(array, k):
             seen.add(num)
         else:
             output.add((min(num, target), max(num, target)))
-    print((map(str, list(output))))
-    return output
+            print(output)
+            # output.add((2,2))
+            # print(output)
+
+    print(list((map(str, list(output)))))
+   
 
 print(pair_sum([1,3,2,2],4))
 
-print(pair_sum([1,3,2,4,0,2],4))
+#print(pair_sum([1,3,2,4,0,2],4))
