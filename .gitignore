@@ -7,6 +7,11 @@ __pycache__/
 *.so
 node_modules/
 
+# my py
+.ipynb_checkpoints/
+.mypy
+.mypy_cache/
+
 
 # Distribution / packaging
 .Python
