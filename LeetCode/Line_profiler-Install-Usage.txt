@@ -1,0 +1,9 @@
+pip3 install line_profiler
+
+Code:
+@profile
+def funcHere():
+
+terminal:
+kernprof -l SCRIPT-NAME.py
+python3.10 -m line_profiler SCRIPT-NAME.py.lprof
