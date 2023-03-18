@@ -1,3 +1,28 @@
+# Questions before system design
+
+Clarify and agree on the scope of the system
+
+User Cases
+
+Who is going to use it?
+
+How are they going to use it?
+
+Constraints
+
+Mainly identify traffic and data handling constraints at scale.
+
+Read/Write Ratios
+
+Data Storage layer
+
+Component + specific APIs required for each of them.
+
+Certain functions must have unique instance (Singletons)
+
+Database schema design.
+
+
 # Youtube
 
 **User Authentication and Authorization:**
@@ -1003,3 +1028,120 @@ A Flickr-like system allows users to upload, share and view photos with features
 ![web](./images/))
 
 
+# Facebook News Feed
+
+In a system design interview, you're expected to discuss the overall architecture, technologies, and trade-offs involved in building a scalable system. Here's a more detailed design for the Facebook Newsfeed:
+
+Frontend
+- React.js: Facebook's open-source JavaScript library for building user interfaces. React allows for efficient rendering and updating of the newsfeed as new posts arrive or user interactions occur.
+- Redux: A predictable state container for JavaScript applications, which helps manage the complex state of the application and makes it easier to develop and debug.
+- GraphQL: A query language for APIs, used to request only the required data from the server, reducing over-fetching and improving performance.
+
+Backend
+- Server: Facebook uses a combination of custom-built and open-source solutions, like HHVM (HipHop Virtual Machine), to execute PHP and Hack code efficiently. For our design, you can use Node.js with Express.js or another web framework to build a scalable backend.
+- Load Balancer: To distribute incoming traffic among multiple backend servers, you can use HAProxy or AWS ELB.
+
+Data Storage
+- MySQL: Facebook uses a sharded MySQL setup for data storage. Sharding helps distribute data across multiple machines, improving write and read performance. To further improve read performance, you can use read replicas.
+- Cassandra: A highly scalable and distributed NoSQL database, suitable for storing large amounts of data across multiple nodes. Facebook uses Cassandra for storing user data, such as profiles and posts.
+- TAO (The Associations and Objects): Facebook's distributed data store for the social graph, which manages objects (like users and posts) and associations (like friendships, likes, and comments). It's built on top of MySQL and a caching layer, like Memcached.
+
+Caching
+- Memcached: An in-memory key-value store for caching frequently accessed data, reducing database load and improving performance.
+- Redis: An in-memory data structure store, used as a caching layer and for storing real-time analytics data.
+
+Ranking and Personalization
+- Machine Learning: Facebook uses machine learning models to rank and personalize content. For this design, you can use TensorFlow or PyTorch for training ML models and deploying them on the backend.
+- Feature Store: A central repository for storing features used in machine learning models. You can use open-source solutions like Feast or Hopsworks.
+
+Content Filtering and Moderation
+- Machine Learning Models: Facebook uses various ML models to detect spam, inappropriate content, and fake news. You can use Natural Language Processing (NLP) and Computer Vision libraries to develop these models.
+- Human Moderators: A team of human moderators can review flagged content and make decisions about content removal.
+
+Real-time Updates
+- WebSockets: A communication protocol that enables real-time updates and interaction between clients and servers. You can use the WebSocket API to push updates to the frontend as they occur.
+- Pub/Sub: A messaging pattern where messages are sent to "topics" and then delivered to all "subscribers" of those topics. You can use Apache Kafka or Google Cloud Pub/Sub for implementing real-time updates.
+
+Monitoring and Logging
+- Prometheus: A monitoring system and time-series database for tracking application performance and generating alerts.
+- ELK Stack (Elasticsearch, Logstash, Kibana): A set of open-source tools for searching, analyzing, and visualizing log data.
+
+This is a high-level design for the Facebook Newsfeed system. In a real-world scenario, the system will involve many more components and optimizations, but this should give you a good starting point for a system design interview.
+
+Sure, I can provide a more detailed explanation of the Facebook Newsfeed system design.
+
+The Facebook Newsfeed is a complex system that involves multiple components and technologies, designed to handle large amounts of data and serve millions of users worldwide. The system is responsible for displaying relevant and personalized content to users based on their preferences, interests, and interactions with the platform.
+
+The system can be divided into several components, including the frontend, backend, data storage, caching, ranking and personalization, content filtering and moderation, and real-time updates.
+
+Frontend: The frontend of the system is responsible for rendering and displaying the Newsfeed to users. Facebook uses React.js, an open-source JavaScript library for building user interfaces, to develop the frontend. React.js allows for efficient rendering and updating of the Newsfeed as new posts arrive or user interactions occur. Facebook also uses Redux, a predictable state container for JavaScript applications, to manage the complex state of the application and make it easier to develop and debug. Additionally, Facebook uses GraphQL, a query language for APIs, to request only the required data from the server, reducing over-fetching and improving performance.
+
+Backend: The backend of the system is responsible for processing user requests, generating content, and communicating with the data storage and caching layers. Facebook uses a combination of custom-built and open-source solutions to execute PHP and Hack code efficiently. For a scalable backend, you can use Node.js with Express.js or another web framework. Additionally, Facebook uses a load balancer to distribute incoming traffic among multiple backend servers. For this purpose, you can use HAProxy or AWS ELB.
+
+Data Storage: The data storage layer of the system is responsible for storing and managing user data, posts, and other content. Facebook uses a sharded MySQL setup for data storage, which helps distribute data across multiple machines, improving write and read performance. To further improve read performance, you can use read replicas. Additionally, Facebook uses Cassandra, a highly scalable and distributed NoSQL database, for storing large amounts of data across multiple nodes. Cassandra is used for storing user data, such as profiles and posts. Facebook also uses TAO (The Associations and Objects), a distributed data store for the social graph, which manages objects (like users and posts) and associations (like friendships, likes, and comments). TAO is built on top of MySQL and a caching layer, like Memcached.
+
+Caching: The caching layer of the system is responsible for storing frequently accessed data in memory, reducing database load and improving performance. Facebook uses Memcached, an in-memory key-value store, for caching frequently accessed data. Additionally, Facebook uses Redis, an in-memory data structure store, for storing real-time analytics data.
+
+Ranking and Personalization: The ranking and personalization component of the system is responsible for selecting and prioritizing content based on user preferences and interactions. Facebook uses machine learning models to rank and personalize content. For this purpose, you can use TensorFlow or PyTorch for training ML models and deploying them on the backend. Additionally, Facebook uses a feature store, a central repository for storing features used in machine learning models. You can use open-source solutions like Feast or Hopsworks for this purpose.
+
+Content Filtering and Moderation: The content filtering and moderation component of the system is responsible for detecting and removing spam, inappropriate content, and fake news. Facebook uses various ML models to detect spam, inappropriate content, and fake news. For this purpose, you can use Natural Language Processing (NLP) and Computer Vision libraries to develop these models. Additionally, Facebook employs a team of human moderators who can review flagged content and make decisions about content removal.
+
+Real-time Updates: The real-time updates component of the system is responsible for delivering new content and updates to users in real-time. Facebook uses WebSockets
+
+
+Frontend
+
+React.js: Facebook's open-source JavaScript library for building user interfaces. React allows for efficient rendering and updating of the newsfeed as new posts arrive or user interactions occur.
+Redux: A predictable state container for JavaScript applications, which helps manage the complex state of the application and makes it easier to develop and debug.
+GraphQL: A query language for APIs, used to request only the required data from the server, reducing over-fetching and improving performance.
+Possible security risks and threats:
+
+Cross-site scripting (XSS) attacks: Malicious scripts can be injected into the website, which can then execute on a victim's browser when they visit the website. This can result in stealing sensitive data, hijacking user sessions, or even modifying the website's content.
+Cross-site request forgery (CSRF) attacks: An attacker can make a victim's browser execute unwanted actions on the website without the victim's knowledge or consent.
+Denial-of-service (DoS) attacks: An attacker can overwhelm the website's servers with a large amount of traffic, making the website unavailable to legitimate users.
+Possible fixes:
+
+Input validation: Input from users should be validated and sanitized to prevent XSS attacks.
+CSRF tokens: A unique token can be generated for each user session and included in every form submission to prevent CSRF attacks.
+Rate limiting: Limit the number of requests a user can make in a certain time period to prevent DoS attacks.
+Backend
+
+Server: Facebook uses a combination of custom-built and open-source solutions, like HHVM (HipHop Virtual Machine), to execute PHP and Hack code efficiently. For our design, you can use Node.js with Express.js or another web framework to build a scalable backend.
+Load Balancer: To distribute incoming traffic among multiple backend servers, you can use HAProxy or AWS ELB.
+Possible security risks and threats:
+
+SQL injection attacks: Malicious code can be injected into SQL statements, which can then execute on the server and potentially access or modify the database.
+Distributed denial-of-service (DDoS) attacks: Attackers can use multiple devices to flood the website with traffic, making it unavailable to legitimate users.
+Possible fixes:
+
+Parameterized queries: SQL queries should use parameterized inputs instead of concatenating user input to prevent SQL injection attacks.
+Firewall and traffic filtering: Implementing a firewall and traffic filtering rules can help prevent DDoS attacks.
+Data Storage
+
+MySQL: Facebook uses a sharded MySQL setup for data storage. Sharding helps distribute data across multiple machines, improving write and read performance. To further improve read performance, you can use read replicas.
+Cassandra: A highly scalable and distributed NoSQL database, suitable for storing large amounts of data across multiple nodes. Facebook uses Cassandra for storing user data, such as profiles and posts.
+TAO (The Associations and Objects): Facebook's distributed data store for the social graph, which manages objects (like users and posts) and associations (like friendships, likes, and comments). It's built on top of MySQL and a caching layer, like Memcached.
+Possible security risks and threats:
+
+Data breaches: Sensitive user data can be stolen by attackers if the database is compromised.
+Data loss: User data can be lost if the database crashes or is corrupted.
+Unauthorized access: Attackers can gain access to the database by exploiting vulnerabilities in the system.
+Possible fixes:
+
+Encryption: Sensitive user data should be encrypted in the database to prevent data breaches.
+Backup and disaster recovery: Regular backups of the database should be taken to prevent data loss. Disaster recovery plans should be in place to recover
+
+
+Sure, here's a more detailed explanation of each possible fix and how to incorporate it, along with the tools that can be used:
+
+Implementing SSL/TLS encryption: To implement SSL/TLS encryption, you can use a tool like Let's Encrypt, which is a free, automated, and open certificate authority that provides SSL/TLS certificates. You can install Let's Encrypt on your web server to generate and renew SSL/TLS certificates. You can also configure your web server to use HTTPS instead of HTTP, so that all communications between the user's browser and the server are encrypted. This can be done using a web server like Nginx or Apache.
+
+Implementing user authentication and access control: To implement user authentication and access control, you can use a tool like OAuth, which is an open standard for authentication and authorization. OAuth allows users to log in using their Facebook or Google accounts, and then grants the application access to their data based on their permissions. You can also implement multi-factor authentication (MFA), which adds an extra layer of security by requiring users to provide additional authentication factors, such as a code sent to their phone or a fingerprint scan.
+
+Implementing input validation and sanitization: To implement input validation and sanitization, you can use a tool like the OWASP ZAP (Zed Attack Proxy), which is a free, open-source web application security scanner. ZAP can help you identify vulnerabilities in your web application, including input validation issues. You can also use a web application firewall (WAF) like ModSecurity, which can detect and block malicious traffic based on a set of rules.
+
+Implementing secure data storage: To implement secure data storage, you can use a tool like Amazon S3, which is a secure, durable, and scalable object storage service. You can also use a database management system like MySQL or MongoDB, which offer features like encryption at rest, which encrypts data while it's being stored on disk. Additionally, you can implement data backups and disaster recovery plans to ensure that your data is not lost in case of a security incident.
+
+Implementing logging and monitoring: To implement logging and monitoring, you can use a tool like the ELK stack (Elasticsearch, Logstash, and Kibana), which is a set of open-source tools for logging, analyzing, and visualizing data. You can use Elasticsearch to store and search through your logs, Logstash to collect and parse your logs, and Kibana to visualize and analyze your data. You can also use a monitoring system like Nagios or Zabbix, which can monitor your servers and services for availability and performance issues.
+
+Conducting regular security audits and penetration testing: To conduct regular security audits and penetration testing, you can use a tool like Metasploit, which is a framework for developing and executing security exploits. You can also use a tool like Burp Suite, which is a web application security testing tool that can help you identify vulnerabilities in your web application. Additionally, you can hire a third-party security auditing firm to conduct a comprehensive security audit of your system.
