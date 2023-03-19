@@ -22,6 +22,7 @@ Certain functions must have unique instance (Singletons)
 
 Database schema design.
 
+![systedesingsteps](./images/SystemDesign-Steps.jpg)
 
 # Youtube
 
