@@ -45,6 +45,14 @@ def findLargestSum(array: list[int])-> int:
     return f"tempLarge {tempLarge}"
 """
 
+"""
+Largest Contiguous Sum
+Given an array of intergers ind the largest configuous subarray
+ex: -1, -4, 8
+output 8
+ex 1,1,7,-10
+ex: 9 (1+1+7)
+"""
 def findLargestSum(array: list[int])-> int:
     tempLarge = float('-inf')
 

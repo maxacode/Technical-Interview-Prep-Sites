@@ -14,10 +14,8 @@ def findSum(values: list[int], target: int) -> list[int]:
         remainder = target - indvValue
         if remainder in values:
             allPairs[indvValue] = remainder
-    
     if len(allPairs) == 0:
         return ("No valid Pairs")
-
     return allPairs
 
 

@@ -1,7 +1,27 @@
 # Injection Attacks
  
+## Best place to store authentication tokens client side
 
-Identify all input sources: It's important to identify all input sources in your microservices system, including forms, cookies, headers, and query parameters. This can help you determine which data needs to be validated and how it should be validated.
+I'd store the token in a cookie with the following three flags:
+
+1. Secure: transmit over https
+
+2. HttpOnly: client-side JS cannot read it (XSS protection)
+
+3. SameSite (either Lax or Strict): CSRF protection
+
+4. To mitigate XSS, the HttpOnly option must be set on the cookie.
+
+5. To mitigate CSRF, the SameSite option must be set on the cookie
+
+6. Critical actions should always ask for user credentials
+
+7. Auth0 recommends storing tokens in browser memory as the most secure option. Using Web Workers to handle the transmission and storage of tokens
+
+8. 
+**Identify all input source**:
+
+ It's important to identify all input sources in your microservices system, including forms, cookies, headers, and query parameters. This can help you determine which data needs to be validated and how it should be validated.
 
 Implement server-side validation: Implement server-side validation for all input data to prevent injection attacks, such as SQL injection, NoSQL injection, and XSS. Server-side validation should be implemented in addition to client-side validation, as client-side validation can be bypassed by attackers. Server-side validation can be implemented using a server-side scripting language such as PHP or Java.
 

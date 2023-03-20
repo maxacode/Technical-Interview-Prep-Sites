@@ -20,7 +20,6 @@ print(calNFib(25))
 # very fast/efficeint
 
 fibsDict = 0
-@profile
 def calNFib(n: int) -> int:
     if n == 0:
         return 0

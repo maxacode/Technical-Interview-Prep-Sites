@@ -6,8 +6,6 @@ ex:
 8 0 0 3
   8 3 5
 """
-
-
 def findMatrix(rowSum: list[int], colSum: list[int]) -> list[int]:
     rows = len(rowSum)
     cols = len(colSum)
